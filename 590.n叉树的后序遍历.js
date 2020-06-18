@@ -17,19 +17,37 @@
  * @param {Node} root
  * @return {number[]}
  */
+
+// 方法一：迭代法
 var postorder = function(root) {
     if (!root) return []
-    var res = []
-    recursion(root)
-    function recursion(root) {
-        if (!root) return
-        for (var i = 0; i < root.children.length; i++) {
-            recursion(root.children[i])
+    const result = []
+    const arr = [root]
+    while(arr.length) {
+        const curr = arr.pop()
+        for (var i = 0; i < curr.children.length; i++) {
+            arr.push(curr.children[i])
         }
-        res.push(root.val)
+        result.unshift(curr.val)
     }
-    return res
+    
+    return result
 };
+
+// 方法一：递归
+// var postorder = function(root) {
+//     if (!root) return []
+//     var res = []
+//     recursion(root)
+//     function recursion(root) {
+//         if (!root) return
+//         for (var i = 0; i < root.children.length; i++) {
+//             recursion(root.children[i])
+//         }
+//         res.push(root.val)
+//     }
+//     return res
+// };
 
 // @lc code=end
 
