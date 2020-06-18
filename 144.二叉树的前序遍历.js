@@ -16,6 +16,20 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+
+//  方法二：迭代
+var preorderTraversal = function(root) {
+    if(root) {
+        const resutl = []
+        const arr = [root]
+        while(arr.length > 0) {
+            
+        } 
+    }
+    return []
+};
+
+//  方法一：递归
 var preorderTraversal = function(root) {
     if(root) {
         return [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)]
