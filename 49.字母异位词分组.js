@@ -5,14 +5,12 @@
  */
 
 // @lc code=start
+
+// 方法二: 计数 + hash分类
 /**
  * @param {string[]} strs
  * @return {string[][]}
  */
-
-
-
- // 方法二: 计数 + hash分类
 var groupAnagrams = function(strs) {
     var map = new Map()
     for (var i = 0; i < strs.length; i++) {
@@ -30,6 +28,10 @@ var groupAnagrams = function(strs) {
 };
 
 // 方法一: 排序 + hash分类
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
 // var groupAnagrams = function(strs) {
 //     var map = new Map()
 //     strs.forEach(item => {

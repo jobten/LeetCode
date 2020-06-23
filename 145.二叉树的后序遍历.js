@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=144 lang=javascript
+ * @lc app=leetcode.cn id=145 lang=javascript
  *
- * [144] 二叉树的前序遍历
+ * [145] 二叉树的后序遍历
  */
 
 // @lc code=start
@@ -12,37 +12,35 @@
  *     this.left = this.right = null;
  * }
  */
-
-//  方法二：迭代
-/**
+// 方法二：迭代
+ /**
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function(root) {
-    if(!root) return []
+var postorderTraversal = function(root) {
+    if (!root) return []
     const resultNums = []
     const stack = [root]
     while(stack.length > 0) {
         const curr = stack.pop()
-        resultNums.push(curr.val)
-        if (curr.right) {
-            stack.push(curr.right)
-        }
+        resultNums.unshift(curr.val)
         if (curr.left) {
             stack.push(curr.left)
+        }
+        if (curr.right) {
+            stack.push(curr.right)
         }
     }
     return resultNums
 };
-
-//  方法一：递归
-/**
+// 方法一：递归
+ /**
  * @param {TreeNode} root
  * @return {number[]}
  */
-// var preorderTraversal = function(root) {
-//     if(!root) return []
-//     return [root.val, ...preorderTraversal(root.left), ...preorderTraversal(root.right)]
+// var postorderTraversal = function(root) {
+//     if (!root) return []
+//     return [...postorderTraversal(root.left), ...postorderTraversal(root.right), root.val]
 // };
 // @lc code=end
 

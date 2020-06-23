@@ -13,40 +13,43 @@
  * };
  */
 
+// 方法二：迭代法
 /**
  * @param {Node} root
  * @return {number[]}
  */
-
-// 方法一：迭代法
 var postorder = function(root) {
     if (!root) return []
-    const result = []
-    const arr = [root]
-    while(arr.length) {
-        const curr = arr.pop()
+    const resultNums = []
+    const stack = [root]
+    while(stack.length) {
+        const curr = stack.pop()
         for (var i = 0; i < curr.children.length; i++) {
-            arr.push(curr.children[i])
+            stack.push(curr.children[i])
         }
-        result.unshift(curr.val)
+        resultNums.unshift(curr.val)
     }
     
-    return result
+    return resultNums
 };
 
 // 方法一：递归
+/**
+ * @param {Node} root
+ * @return {number[]}
+ */
 // var postorder = function(root) {
 //     if (!root) return []
-//     var res = []
+//     var resultNums = []
 //     recursion(root)
 //     function recursion(root) {
 //         if (!root) return
 //         for (var i = 0; i < root.children.length; i++) {
 //             recursion(root.children[i])
 //         }
-//         res.push(root.val)
+//         resultNums.push(root.val)
 //     }
-//     return res
+//     return resultNums
 // };
 
 // @lc code=end

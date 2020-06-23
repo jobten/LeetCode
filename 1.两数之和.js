@@ -5,14 +5,13 @@
  */
 
 // @lc code=start
+
+//  方法二：哈希表
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
-
-
-//  方法二：哈希表
 var twoSum = function(nums, target) {
     if (nums.length < 2) return []
     const map = new Map()
@@ -27,6 +26,11 @@ var twoSum = function(nums, target) {
     return []
 };
 //  方法一：2重循环暴力求解
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
 // var twoSum = function(nums, target) {
 //     if (nums.length < 2) return []
 //     for (var i = 0; i < nums.length - 1; i++) {

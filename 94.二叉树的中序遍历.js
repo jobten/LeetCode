@@ -19,21 +19,29 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
-    if (root) {
-        
+    if (!root) return []
+    const resultNums = []
+    const stack = []
+    let curr = root
+    while(stack.length > 0 || curr){
+        while (curr) {
+            stack.push(curr)
+            curr = curr.left
+        }
+        curr = stack.pop()
+        resultNums.push(curr.val)
+        curr = curr.right
     }
-    return []
+    return resultNums
 };
  // 方法一：递归
 /**
  * @param {TreeNode} root
  * @return {number[]}
  */
-var inorderTraversal = function(root) {
-    if (root) {
-        return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)]
-    }
-    return []
-};
+// var inorderTraversal = function(root) {
+//     if (!root) return []
+//     return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)]
+// };
 // @lc code=end
 
