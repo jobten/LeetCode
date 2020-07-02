@@ -12,6 +12,7 @@
  *     this.left = this.right = null;
  * }
  */
+// 方法一:广度优先遍历
 /**
  * @param {TreeNode} root
  * @return {number[]}
@@ -33,6 +34,23 @@ var largestValues = function(root) {
         resultNums.push(max)
         level++
     }
+    return resultNums
+};
+// 方法二:深度优先遍历
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var largestValues = function(root) {
+    if (!root) return []
+    const resultNums = []
+    const dfs = (node, level) => {
+        if (!node) return
+        if (resultNums[level] === undefined || resultNums[level] < node.val) resultNums[level] = node.val
+        if(node.left) dfs(node.left, level + 1)
+        if(node.right) dfs(node.right, level + 1)
+    }
+    dfs(root, 0)
     return resultNums
 };
 // @lc code=end

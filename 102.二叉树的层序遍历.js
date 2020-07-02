@@ -12,6 +12,7 @@
  *     this.left = this.right = null;
  * }
  */
+// 方法一：广度优先遍历
 /**
  * @param {TreeNode} root
  * @return {number[][]}
@@ -32,6 +33,26 @@ var levelOrder = function(root) {
         }
         level++
     }
+    return resultNums
+};
+// 方法二：深度优先遍历
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+    if (!root) return []
+    const resultNums = []
+
+    const dfs = (node, level) => {
+        if (!node) return
+        // resultNums[level]未定义时初始化为[]
+        resultNums[level] || (resultNums[level] = [])
+        resultNums[level].push(node.val)
+        if (node.left) dfs(node.left, level+1)
+        if (node.right) dfs(node.right, level+1)
+    }
+    dfs(root, 0)
     return resultNums
 };
 // @lc code=end
