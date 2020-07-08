@@ -49,5 +49,25 @@ var plusOne = function(digits) {
     }
     return digits
 };
+
+// 方法二：从后往前遍历数组
+// 1. 当前数加1
+// 2. 当前数等于其值对10求余
+// 3. 求余后等于0，则继续遍历
+// 4. 求余后不等于直接返回数组
+// 5. 遍历完后仍未得到结果，则需要数组前面加1
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+    for (let i = digits.length - 1; i >=0 ; i--) {
+        digits[i]++
+        digits[i] = digits[i]%10
+        if (digits[i] != 0) return digits    
+    }
+    digits.unshift(1)
+    return digits
+};
 // @lc code=end
 
