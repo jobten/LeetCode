@@ -12,23 +12,20 @@
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-    if (m === 1 || n === 1) {
-        return 1
+    var dp = new Array(m);
+    for(var i = 0;i<n;i++){
+        dp[i] = new Array(m);
+        dp[i][0] = 1;
     }
-    // 初始化数组
-    const array = []
-    for (let i = 0; i < m; i++) array[i] = new Array()
-    // 将除目标外最后一列置为1
-    for (let i = 0; i < m - 1; i++) array[i][n - 1] = 1
-    // 将除目标外最后一行置为1
-    for (let i = 0; i < n - 1; i++) array[m - 1][i] = 1
-
-    for (let i = m - 2; i >= 0; i --) 
-        for (let j = n - 2; j >= 0; j--) 
-            array[i][j] = array[i][j+1] + array[i+1][j]
-            
-    return array[0][0]
-
+    for(var r = 0;r < m;r++){
+        dp[0][r] = 1;
+    }
+    for(var j = 1;j<n;j++){
+        for(var z = 1;z<m;z++){
+            dp[j][z] = dp[j-1][z]+dp[j][z-1]
+        }
+    }
+    return dp[n-1][m-1];
 };
 
  // 方法二： 动态规划，优化成一维数组
@@ -39,23 +36,13 @@ var uniquePaths = function(m, n) {
  * @return {number}
  */
 var uniquePaths = function(m, n) {
-    if (m === 1 || n === 1) {
-        return 1
+    var cur = new Array(n).fill(1);
+    for(var i = 1;i < m;i++){
+        for(var r = 1;r < n;r++){
+            cur[r] = cur[r-1]+cur[r];
+        }
     }
-    // 初始化数组
-    const array = []
-    for (let i = 0; i < m; i++) array[i] = new Array()
-    // 将除目标外最后一列置为1
-    for (let i = 0; i < m - 1; i++) array[i][n - 1] = 1
-    // 将除目标外最后一行置为1
-    for (let i = 0; i < n - 1; i++) array[m - 1][i] = 1
-
-    for (let i = m - 2; i >= 0; i --) 
-        for (let j = n - 2; j >= 0; j--) 
-            array[i][j] = array[i][j+1] + array[i+1][j]
-
-    return array[0][0]
-
+    return cur[n-1];
 };
 // @lc code=end
 
